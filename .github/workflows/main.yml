@@ -1,4 +1,4 @@
-name: build webui
+name: the-handbook webui
 on: [push]
 jobs:
 
@@ -6,7 +6,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - name: executing remote ssh commands using password
+    - name: build and deploy webui
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
