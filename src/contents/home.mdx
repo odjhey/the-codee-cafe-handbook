@@ -2,23 +2,79 @@ export const Home = () => (
   <div style={{ padding: 20, backgroundColor: "indianred" }} />
 )
 
-## Children and family
+# General Guidelines
 
-```typescript
-const abcd
+## must haves
+
+1. prettier
+
+   ```javascript
+   // .prettierrc.js
+   module.exports = {
+     bracketSpacing: true,
+     jsxBracketSameLine: true,
+     singleQuote: false,
+     trailingComma: "all",
+     semi: false,
+     tabWidth: 2,
+     arrowParens: "always",
+   }
+   ```
+
+1. eslint
+1. tests
+1. typescript as much as we can
+1. .gitignore
+1. .env.template
+
+# Frontend Clients
+
+Below applies to both web and mobile with minimal differences.
+
+## project structure
+
+```
+./src
+|_ ./components
+|_ ./pages or screens
+|_ ./models
+
+./__tests__
+  (similar to src)
 ```
 
-## Frontend
+## pages
 
-## Dumb and Smart components
+```
+root
+ |_ main-container
+   |_ layout
+     |_ section
+        |_ contents
 
-### smart
+* contents may look like
+contents
+  |_ layout
+    |_ smart component
+      |_ dumb components
+```
+
+# Frontend Patterns
+
+## layouting
+
+### children and family
+
+### render props
+
+## components
+
+### smart components
 
 - manages state (business data)
 - minimal to no (zero) styling
--
 
-### dumb
+### dumb components
 
 - pure UI
 - styles
@@ -30,14 +86,58 @@ const abcd
 
 1. maintenance (code reuse, changability, testing, readability)
 
-## Render Props
+### suspense or HOC with loading and error
 
-## Suspense or HOC with Loading and Error
+# Backend Services
 
-# Backend
+## project structure
 
-## The create\* conventionn
+```
+./src
+  |__ ./core
+    |__ ./_usecases
+      |__ ./*.usecase.ts (or top level if kunte lang)
+    |__ ./business-objects (business objects)
+      |__ ./*.bo.ts (or top level if kunte lang)
+  |__ ./models
+    |__ ./<source>-models
+    |__ ./<source>-bindings
+  |__ ./graphql
+    |__ ./typedefs
+    |__ ./resolvers
+  |__ ./connectors (previously called controllers)
+  |__ ./libs
 
-## The make\* convention
+./__tests__
+  (similar to src)
+```
 
-## Dependency injection
+## backend code patterns and conventions
+
+### the make\* convention
+
+a function that returns another function
+
+```
+  const makeA = ( deps ) => ( params ) => { ... }
+
+  or
+
+  function makeA ( deps ) {
+    return function( params ) {
+      ...
+    }
+  }
+```
+
+### dependency injection
+
+# Example Repositories
+
+todo
+
+# Definition of terms
+
+1. **barrel files**
+
+   barrel files are the `index.ts` files that exposes modules.

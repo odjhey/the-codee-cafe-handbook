@@ -6,7 +6,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className={"layout"}>
       <section className="header">
-        <h1>The Handbook</h1>
+        <h1 style={{ fontSize: "3rem" }}>The Handbook</h1>
         <div style={{ width: "100%" }}>
           <nav>
             <ul>

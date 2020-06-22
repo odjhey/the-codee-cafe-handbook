@@ -1,3 +1,7 @@
+html {
+  overflow-y: scroll;
+}
+
 .App {
   font-family: Muli, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
     Droid Sans, Helvetica Neue, sans-serif;
@@ -45,4 +49,9 @@
 
 .activeNav {
   color: tomato;
+}
+
+h1 {
+  font-size: 2rem;
+  border-bottom: 1px solid #282c34;
 }
