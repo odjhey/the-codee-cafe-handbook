@@ -1,6 +1,6 @@
 version: "3"
 services:
-  the-codee-cafe-handbook:
+  webui:
     container_name: the-codee-cafe-handbook
     restart: always
     build:
@@ -8,8 +8,8 @@ services:
       dockerfile: Dockerfile
       args:
         GIT_URL: "git@github.com:odjhey/the-codee-cafe-handbook.git"
-    command: "node dist/server.js"
+    command: "node server.js"
     ports:
-      - "7890:8080"
+      - "80:8080"
     environment:
       PORT: "8080"
