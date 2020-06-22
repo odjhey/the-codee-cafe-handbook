@@ -1,8 +1,9 @@
 import React from "react"
 import "./App.css"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-
 import Layout from "./components/layout"
+import Home from "./pages/home"
+import About from "./pages/about"
 
 function App() {
   return (
@@ -14,13 +15,10 @@ function App() {
             renders the first one that matches the current URL. */}
             <Switch>
               <Route path="/about">
-                <p>About</p>
-              </Route>
-              <Route path="/users">
-                <p>Users</p>
+                <About></About>
               </Route>
               <Route path="/">
-                <p>Home</p>
+                <Home></Home>
               </Route>
             </Switch>
           </Layout>
