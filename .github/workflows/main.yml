@@ -13,4 +13,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
-        script: ./the-codee-cafe-handbook/build.sh
+        script_stop: true
+        script: |
+          ./the-codee-cafe-handbook/build.sh
+          ./the-codee-cafe-handbook/deploy.sh
