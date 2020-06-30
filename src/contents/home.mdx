@@ -134,16 +134,16 @@ a function that returns another function
 
 ## Graphql
 
-### General Schema Guidelines
+### General Schema Guidelines (Mutations)
 
-1. Schema Design
+1. Schema Design (Mutations)
    1. always use a `Payload` type
       ```gql
       type Mutation {
         createFinishedProduct( input: {...}) : ProductPayload
       }
       ```
-   1. all mutations should only have 1 input parameter names `input`
+   1. all mutations should only have 1 input parameter, and it is named as `input`
       ```gql
       type Mutation {
         createRawMaterial( material: {...}) : ProductPayload  //bad
@@ -182,8 +182,57 @@ a function that returns another function
       }
       ```
 1. naming conventions
+
    1. mutations follow the `verbObject` pattern, camelCase.
+
 1. use Relay's Connection pattern for long lists, see [this example](https://github.com/odjhey/ark-service)
+
+1. again, keep mutations as small as possible
+
+### General Schema Guidelines (Queries)
+
+1. Schema Design (Queries)
+
+   1. SUPER RULE! avoid using `id` for lookup/reference, almost always expand, use object types over flat ones
+      ```gql
+      type Delivery {
+        id: ID!
+        customerId: ID // BAD!
+        customer: Customer // Good!
+      }
+      ```
+   1. prioritize your domain usecases
+
+   1. aim to build a single graph as an end result for the whole application
+
+1. use intefaces and unions where appropriate
+
+   ```
+   //interface
+   interface user {
+     id: id
+     name: string
+   }
+   type admin implements user {
+     id: id
+     name: string
+     superpowers: [superpower]
+   }
+
+   //Union
+   union GachaResult = Warrior | Mage
+
+   type Warrior {
+     pAtk: 10
+   }
+   type Mage {
+     mAtk: 20
+   }
+
+   type Query {
+     rollGacha: GachaResult
+   }
+   ```
 
 # Example Repositories
 
