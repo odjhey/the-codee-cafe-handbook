@@ -132,6 +132,59 @@ a function that returns another function
 
 ### dependency injection
 
+## Graphql
+
+### General Schema Guidelines
+
+1. Schema Design
+   1. always use a `Payload` type
+      ```gql
+      type Mutation {
+        createFinishedProduct( input: {...}) : ProductPayload
+      }
+      ```
+   1. all mutations should only have 1 input parameter names `input`
+      ```gql
+      type Mutation {
+        createRawMaterial( material: {...}) : ProductPayload  //bad
+        createFinishedProduct( input: {...}) : ProductPayload //good
+      }
+      ```
+   1. nest `input`
+      ```gql
+      input UoMInput {
+        unitInt: ID!
+        desc: String
+      }
+      input MaterialInput {
+        id: ID!
+        desc: String
+        type: enum
+        baseUoM: UoMInput
+      }
+      ```
+   1. use a `patch` field inside `input` to identify fields to be patched
+      ```
+      input ProductDescInput {
+        lang: enum
+        desc: String
+      }
+      input ChangeProductDescInput {
+        id: ID!
+        patch: ProductDescInput!
+      }
+      ```
+   1. mutation naming, no generic names please. follow naming based on use-case
+      ```
+      type Mutation {
+        updateItem //bad
+        changeProductDescription //Good
+      }
+      ```
+1. naming conventions
+   1. mutations follow the `verbObject` pattern, camelCase.
+1. use Relay's Connection pattern for long lists, see [this example](https://github.com/odjhey/ark-service)
+
 # Example Repositories
 
 todo
